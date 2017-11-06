@@ -14,11 +14,11 @@ export default class api {
         return 'success';
     }
 
-    getCurrentUser() {
+    getCurrentUser(cb) {
         return users[0];
     }
 
-    getPlayers(id = null) {
+    getPlayers(id = null, cb) {
         if (id !== null) {
             return players.find(e => e.id == id);
         }
@@ -27,15 +27,15 @@ export default class api {
         }
     }
 
-    getNationality(id) {
+    getNationality(id, cb) {
         return nationalities.find(e => e.id == id);
     }
 
-    getTeam(id) {
+    getTeam(id, cb) {
         return teams.find(e => e.id == id);
     }
 
-    getUsers(id = null) {
+    getUsers(id = null, cb) {
         if(id == null) {
             return players;
         }
@@ -45,35 +45,36 @@ export default class api {
 
     }
 
-    getFixtures(day = null) {
+    getFixtures(day = null, cb) {
         if(day != null) {
             return fixtures;
         }
         else {
-            console.log('in get fixtures',fixtures)
-            return fixtures;
+            if(cb) {
+                cb(fixtures);
+            }
         }
     }
 
-    getLeagues(id = null) {
+    getLeagues(id = null, cb) {
         if (id !== null) {
             return leagues.find(e => e.id == id);
         }
     }
 
-    getContractsByTeam(id) {
+    getContractsByTeam(id, cb) {
         return contracts.filter(e => e.team == id);
     }
 
-    getSponsorsByTeam(id) {
+    getSponsorsByTeam(id, cb) {
         return sponsorContracts.filter(e => e.team == id);
     }
 
-    getFinancesByTeam(id) {
+    getFinancesByTeam(id, cb) {
         return finances.filter(e => e.team == id);
     }
 
-    getTeamsByLeague(id) {
+    getTeamsByLeague(id, cb) {
         return teams.filter(e => e.league == id);
     }
 }

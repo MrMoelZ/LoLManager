@@ -45,19 +45,17 @@ export default {
     created () {
         this.league = window.services.data.getLeagues(0);
         this.teams = window.services.data.getTeamsByLeague(0);
-        this.fixtures = window.services.data.getFixtures();
-        
-    },
-    mounted() {
-        console.log('in mounted', JSON.stringify(this.fixtures));
-        this.fixtures.forEach(f => {
-            f.matches.forEach(m => {
-                let a = window.services.data.getTeam(m.teams[0]);
-                let b = window.services.data.getTeam(m.teams[1]);
-                m["teamnameA"] = a.tag;
-                m["teamnameB"] = b.tag;
-            })
-        })
+        window.services.data.getFixtures(null, (fixtures) => {
+            fixtures.forEach(f => {
+                f.matches.forEach(m => {
+                    let a = window.services.data.getTeam(m.teams[0]);
+                    let b = window.services.data.getTeam(m.teams[1]);
+                    m["teamnameA"] = a.tag;
+                    m["teamnameB"] = b.tag;
+                });
+            });
+            this.fixtures = fixtures;
+        });  
     },
     data() {
         return {
