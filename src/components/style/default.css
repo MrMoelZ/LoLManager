@@ -1,0 +1,10 @@
+#header {
+    max-height: 20%;
+}
+
+#content {
+    height: 80%;
+    margin: 5px 5%;
+    background-color: #666;
+    padding: 40px 0;
+}

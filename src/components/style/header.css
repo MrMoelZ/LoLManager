@@ -1,0 +1,32 @@
+body {
+    background-image: url('../../assets/headerbg.jpg');
+    max-height: 200px;
+    color: #ddd;
+}
+
+h1 {
+    font-size: 4em;
+}
+
+#nav {
+    position: relative;
+}
+
+.logo {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    height: 200px;
+    width: 180px;
+
+}
+
+#interface {
+    position: absolute;
+    right: 50px;
+
+}
+
+#interface span {
+    margin-right: 30px;
+}
