@@ -18,6 +18,46 @@ export default class api {
         return users[0];
     }
 
+    setCurrentUser(id) {
+        currentUser = id;
+    }
+
+    getCurrentGame() {
+        return this.getGames(currentGame);
+    }
+
+    setCurrentGame(id) {
+        currentGame = id;
+    }
+
+    setGame(game) {
+        if(game.id == -1) game.id = this.getId("game");
+        games.push(game);
+        return game.id;
+    }
+
+    getId(str) {
+        let arr = null;
+        switch(str) {
+            case "game": 
+                arr = games;
+                break;
+        }
+        let r = arr.reduce((ret, val) => {
+            if (val.id > ret) return val.id;
+            else return ret;
+        }, 0);
+        return ++r;
+    }
+
+    getNewGame() {
+        return {
+            id: -1,
+            name: "",
+            participants: []
+        };
+    }
+
     getPlayers(id = null, cb) {
         if (id !== null) {
             return players.find(e => e.id == id);
@@ -36,13 +76,27 @@ export default class api {
     }
 
     getUsers(id = null, cb) {
-        if(id == null) {
-            return players;
+        let usrs = null;
+        if(id === null) {
+            usrs = users;
         }
         else  {
-          return players.find(e=> e.id == id);
+            usrs = users.find(e=> e.id == id);
         }
+        if(cb) cb(usrs);
+        else return usrs;
+    }
 
+    getGames(id = null, cb) {
+        let g = null;
+        if (id === null) {
+            g = games;
+        }
+        else {
+            g = games.find(e => e.id == id);
+        }
+        if (cb) cb(g);
+        else return g;
     }
 
     getFixtures(day = null, cb) {
@@ -79,6 +133,8 @@ export default class api {
     }
 }
 
+let currentGame = null;
+let currentUser = null;
 
 let nationalities = [
 {
@@ -527,6 +583,7 @@ let users = [{
 
 
 let games = [{
+    id: 0,
     name: "testgame",
     participants: [0, 1],
 

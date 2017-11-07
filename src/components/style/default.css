@@ -8,3 +8,7 @@
     background-color: #666;
     padding: 40px 0;
 }
+
+.clickable {
+    cursor: pointer;
+}
