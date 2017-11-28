@@ -1,16 +1,18 @@
 import moment from 'moment'
 import Vue from 'vue'
+import axios from 'axios'
 
 export default class api {
 
     test() {
         let date = moment();
-        fetch('http://localhost:3000/test').then((err, res, body) => {
-            if (err) console.log(err);
-            else {
-                console.log('HELLOU, YES THIS IS DOG');
-            }
+        axios.get('http://localhost:3000/test')
+        .then((res) => {
+            console.log('axios',res.data);
         })
+        .catch((err)=> {
+            console.log('err',err)
+        });
         return 'success';
     }
 
