@@ -7,6 +7,10 @@
 <script>
 export default {
     name: 'test',
+    created() {
+        console.log('Created');
+        window.services.data.test();
+    },
     data() {
         return {
             msg: 'test'

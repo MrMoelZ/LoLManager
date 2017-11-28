@@ -5,7 +5,7 @@ export default class api {
 
     test() {
         let date = moment();
-        fetch('http://localhost:3000/').then((err, res, body) => {
+        fetch('http://localhost:3000/test').then((err, res, body) => {
             if (err) console.log(err);
             else {
                 console.log('HELLOU, YES THIS IS DOG');

@@ -6,6 +6,8 @@
             <li><router-link to="/transfers">Transfers</router-link></li>
             <li><router-link to="/finance">Finanzen</router-link></li>
             <li><router-link to="/league">Liga</router-link></li>
+            <li><router-link to="/test">Test</router-link></li>
+
         </ul>
     </div>
 </template>
